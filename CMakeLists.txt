@@ -11,8 +11,8 @@ set (CMAKE_CXX_STANDARD 11)
 set(CXX_FLAGS "-Wall -O3")
 
 # Includes directory
-set(INC_DIR ${PROJECT_SOURCE_DIR}/includes)
-include_directories(${INC_DIR})
+include_directories(${PROJECT_SOURCE_DIR})
 
 # Sources directories
-add_subdirectory(src)
+add_subdirectory(backend)
+add_subdirectory(frontend)

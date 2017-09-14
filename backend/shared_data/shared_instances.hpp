@@ -1,0 +1,4 @@
+#ifndef SHARED_INSTANCES_HEADER
+#define SHARED_INSTANCES_HEADER
+
+#endif

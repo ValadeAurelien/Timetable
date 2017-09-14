@@ -1,0 +1,12 @@
+./frontend/Qt/application/application.hpp
+./frontend/Qt/main_window/main_window.hpp
+./backend/templates_data/template_class.hpp
+./backend/templates_data/template_planning_item.hpp
+./backend/application/application.hpp
+./backend/genetic_pool_instances/genetic_pool_alpha.hpp
+./backend/genetic_pool_instances/genetic_pool_species.hpp
+./backend/shared_data/shared_data.hpp
+./backend/shared_data/shared_instances.hpp
+./backend/specimen_instances/specimen_alpha.hpp
+./backend/abstract_classes/abstract_genetic_pool.hpp
+./backend/abstract_classes/abstract_specimen.hpp

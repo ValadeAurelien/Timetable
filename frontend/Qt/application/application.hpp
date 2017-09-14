@@ -1,0 +1,4 @@
+#ifndef APPLICATION_HEADER
+#define APPLICATION_HEADER
+
+#endif

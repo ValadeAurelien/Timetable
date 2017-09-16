@@ -1,9 +1,9 @@
 #include "course_instance.hpp"
 
-const Teacher* CourseInstance::getTeacher() const { return teacher; }
+teacher_id CourseInstance::getTeacher() const { return teacher; }
 const EquivPupilsNb& CourseInstance::getPupils() const { return pupils; }
-const CourseTemplate& CourseInstance::getTempl() const { return templ; }
+sharedcourse_id CourseInstance::getShared() const { return shared; }
 
-void CourseInstance::setTeacher(const Teacher* _teacher) { teacher = _teacher; }
-void CourseInstance::setPupils(const equiv_pupils_nb_t& _pupils) { pupils = _pupils; }
-void CourseInstance::setTempl(const CourseTemplate* _templ) { templ = _templ };
+void CourseInstance::setTeacher(teacher_id _teacher) { teacher = _teacher; }
+void CourseInstance::setPupils(const EquivPupilsNb& _pupils) { pupils = _pupils; }
+void CourseInstance::setShared(sharedcourse_id _shared) { shared = _shared; }

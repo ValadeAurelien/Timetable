@@ -1,15 +1,15 @@
 #include "pitem_instance.hpp"
 #include "course_instance.hpp"
 
-PItemInstance(){}
-~PItemInstance(){}
+PItemInstance::PItemInstance(){}
+PItemInstance::~PItemInstance(){}
 
-const Classroom& PItemInstance::getClassroom() const { return classroom; }
+room_id PItemInstance::getClassroom() const { return classroom; }
 hour_t PItemInstance::getHour() const { return hour; }
-const PItemTemplate* PItemInstance::getTempl() const { return templ; }
-const CourseInstance* PItemInstance::getCourse() const { return course; }
+sharedpitem_id PItemInstance::getShared() const { return shared; }
+courseinstance_id PItemInstance::getCourse() const { return course; }
 
-void PItemInstance::setClassroom(const Classroom* _classroom) { classroom = _classroom; }
+void PItemInstance::setClassroom(room_id _classroom) { classroom = _classroom; }
 void PItemInstance::setHour(hour_t _hour) { hour = _hour; }
-void PItemInstance::setTempl(const PItemTemplate* _templ) { templ = _templ; }
-void PItemInstance::setCourse(const CourseInstance* _course) { course = _course; }
+void PItemInstance::setShared(sharedpitem_id _shared) { shared = _shared; }
+void PItemInstance::setCourse(courseinstance_id _course) { course = _course; }

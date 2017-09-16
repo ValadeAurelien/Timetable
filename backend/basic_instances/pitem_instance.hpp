@@ -1,31 +1,29 @@
 #ifndef PITEM_INSTANCE_HEADER
 #define PITEM_INSTANCE_HEADER
 
-typedef unsigned char uchar;
-typedef unsigned char hour_t;
-
 #include "course_instance.hpp"
+#include "common/common_types.hpp"
 
 class PItemInstance {
 public:
     PItemInstance();
     ~PItemInstance();
 
-    Classroom* getClassroom() const;
+    room_id getClassroom() const;
     hour_t getHour() const;
-    const PItem* getTempl() const;
-    const CourseInstance* getCourse() const;
+    sharedpitem_id getShared() const;
+    courseinstance_id getCourse() const;
 
-    void setClassroom(const Classroom& classroom);
+    void setClassroom(room_id classroom);
     void setHour(hour_t hour);
-    void setTempl(const PItem* templ);
-    void setCourse(const CourseInstance* course);
+    void setShared(sharedpitem_id _shared);
+    void setCourse(courseinstance_id _course);
 
 private:
-    const Classroom* classroom;
+    room_id classroom;
     hour_t hour;
-    const PItem* templ;
-    const CourseInstance* course;
+    sharedpitem_id shared;
+    courseinstance_id course;
 };
 
 #endif

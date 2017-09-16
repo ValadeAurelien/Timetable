@@ -2,28 +2,29 @@
 #define COURSE_INSTANCE_HEADER
 
 #include <map>
-#include "pitem_instance.hpp"
 
 typedef std::map<unsigned char, unsigned short> EquivPupilsNb;
+
+#include "pitem_instance.hpp"
+#include "common/id_types.hpp"
 
 class CourseInstance {
 public:
     CourseInstance();
     ~CourseInstance();
 
-    const Teacher* getTeacher() const;
+    teacher_id getTeacher() const;
     const EquivPupilsNb& getPupils() const;
-    const CourseTemplate* getTempl() const;
+    sharedcourse_id getShared() const;
 
-    void setTeacher(const Teacher* teacher);
+    void setTeacher(teacher_id teacher);
     void setPupils(const EquivPupilsNb& pupils);
-    void setTempl(const CourseTemplate* templ);
+    void setShared(sharedcourse_id shared);
 
 private:
-    const Teacher* teacher;
+    teacher_id teacher;
     EquivPupilsNb pupils;
-    const CourseTemplate* templ;
-
+    sharedcourse_id shared;
 };
 
 #endif

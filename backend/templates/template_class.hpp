@@ -1,4 +1,0 @@
-#ifndef TEMPLATE_CLASS_HEADER
-#define TEMPLATE_CLASS_HEADER
-
-#endif

@@ -1,83 +1,54 @@
 #ifndef ABSTRACT_SPECIMEN_HEADER
 #define ABSTRACT_SPECIMEN_HEADER
 
-
 #include <map>
 #include <vector>
+#include "../basic_instances/pitem_instance.hpp"
+#include "../basic_instances/course_instance.hpp"
 
-class PItemInstance {
-    PItemInstance();
-
-    ~PItemInstance();
-
-
-public:
-    Classroom *getClassroom() const;
-
-    void setClassroom(Classroom *classroom);
-
-    unsigned int getHour() const;
-
-    void setHour(unsigned int hour);
-
-    PItem *getTempl() const;
-
-    void setTempl(PItem *templ);
-
-    CourseInstance *getCourse() const;
-
-    void setCourse(CourseInstance *course);
-
-private:
-    Classroom *classroom;
-    unsigned int hour;
-    PItem *templ;
-    CourseInstance* course;
-
-};
+typedef std::vector<PItemInstance> PItemsInstances;
 
 class CourseInstance {
 public:
-    Teacher *getTeacher() const;
+    CourseInstance();
+    ~CourseInstance();
 
-    void setTeacher(Teacher *teacher);
+    const Teacher* getTeacher() const;
+    const EquivPupilsNb_t& getPupils() const;
+    const CourseTemplate* getTempl() const;
 
-    const std::map<unsigned int, unsigned int> &getPupils() const;
-
-    void setPupils(const std::map<unsigned int, unsigned int> &pupils);
-
-    CourseTemplate *getTempl() const;
-
-    void setTempl(CourseTemplate *templ);
+    void setTeacher(const Teacher* teacher);
+    void setPupils(const EquivPupilsNb& pupils);
+    void setTempl(const CourseTemplate* templ);
 
 private:
-    Teacher *teacher;
-    std::map<unsigned int, unsigned int> pupils;
-    CourseTemplate *templ;
+    const Teacher* teacher;
+    EquivPupilsNb pupils;
+    const CourseTemplate* templ;
 
 };
 
+typedef std::vector<CourseInstance> CourseInstances;
 
 class AbstractSpecimen {
 
 public:
     AbstractSpecimen();
-
     ~AbstractSpecimen();
 
-    virtual float rate() = 0;
+    virtual float mark() = 0;
 
-    virtual float mutate(AbstractSpecimen *specimen, unsigned int min = 0, unsigned int max = 10) = 0;
+    virtual float mutate(AbstractSpecimen *specimen, uchar min = 0, uchar max = 10) = 0;
 
     virtual bool isBetterThan(AbstractSpecimen const &specimen) const = 0;
 
-    bool operator<=(AbstractSpecimen const &specimen1, AbstractSpecimen const &specimen2);
+    bool operator<=(AbstractSpecimen const &specimen2) const;
 
-    float getMark();
+    float getMark() const;  
 
 protected:
-    std::vector<PItemInstance> pitems;
-    std::vector<CourseInstance> courses;
+    PItemsInstances pitems;
+    CourseInstances courses;
     float mark = 0;
 
 private:

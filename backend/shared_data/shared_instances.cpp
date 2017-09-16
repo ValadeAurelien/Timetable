@@ -1,7 +1,7 @@
 #include "shared_instances.hpp"
 
-int Teacher::isHappyToWork(hout_t hour) const {
-    return wishes[hour];
+int Teacher::isHappyToWork(hour_t hour) const {
+    return wishes.at(hour);
 }
 
 //bool Teacher::wantThisCourse(std::string course) const {

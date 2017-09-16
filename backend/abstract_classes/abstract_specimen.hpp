@@ -3,9 +3,12 @@
 
 #include <map>
 #include <vector>
+#include "basic_instances/pitem_instance.hpp"
+#include "basic_instances/course_instance.hpp"
 
 typedef std::vector<PItemInstance> PItemsInstances;
 typedef std::vector<CourseInstance> CourseInstances;
+
 typedef float mark_t;
 
 class AbstractSpecimen {

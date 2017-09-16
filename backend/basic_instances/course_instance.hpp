@@ -6,7 +6,7 @@
 typedef std::map<unsigned char, unsigned short> EquivPupilsNb;
 
 #include "pitem_instance.hpp"
-#include "common/id_types.hpp"
+#include "common/common_types.hpp"
 
 class CourseInstance {
 public:

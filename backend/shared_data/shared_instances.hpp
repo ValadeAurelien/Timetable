@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include <unordered_set>
-#include "common/id_types.hpp"
+#include "common/common_types.hpp"
 
 enum class_type_t {LAB_INGE, LAB_BIO, LAB_PHY, LAB_CHEMI, C_INGE, C_BIO, C_PHY, C_CHEMI, LAB};
 enum board_type_t {W_BOARD, B_BOARD};
@@ -25,10 +25,10 @@ private:
 
 };
 
-class SharedTeacher{
+class Teacher{
 
     int isHappyToWork(hour_t hour) const;
-    bool wantThisCourse(std::string course) const;
+//    bool wantThisCourse(std::string course) const;
 
 private:
     std::map<unsigned int, int> wishes;

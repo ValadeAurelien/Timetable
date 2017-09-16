@@ -18,8 +18,8 @@ protected:
 
 
 private:
-  std::vector<AbstractSpecimen> specimenPool;
-  std::priority_queue<AbstractSpecimen> savedSpecimen;
+  std::vector<AbstractSpecimen> specimenPool; // Collection of specimen
+  std::priority_queue<AbstractSpecimen> savedSpecimen; // Best specimen recorded
 
 
 };

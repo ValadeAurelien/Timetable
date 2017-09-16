@@ -20,9 +20,9 @@ public:
 
     void setHour(unsigned int hour);
 
-    PItemTemplate *getTempl() const;
+    PItem *getTempl() const;
 
-    void setTempl(PItemTemplate *templ);
+    void setTempl(PItem *templ);
 
     CourseInstance *getCourse() const;
 
@@ -31,7 +31,7 @@ public:
 private:
     Classroom *classroom;
     unsigned int hour;
-    PItemTemplate *templ;
+    PItem *templ;
     CourseInstance* course;
 
 };

@@ -15,4 +15,4 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 # Sources directories
 add_subdirectory(backend)
-add_subdirectory(frontend)
+#add_subdirectory(frontend)

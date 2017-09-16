@@ -2,6 +2,11 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # All subdirs' sources
+
+set(ABSTRACTS_SRC
+        abstract_classes/abstract_genetic_pool.cpp
+        abstract_classes/abstract_specimen.cpp
+        )
 set(TEMPLATES_SRC
   templates/template_planning_item.cpp
   templates/template_class.cpp
@@ -24,5 +29,6 @@ add_executable(main_backend
   ${SHARED_DATA_SRC} 
   ${GENETIC_POOL_SRC}
   ${SPECIMEN_SRC}
+        ${ABSTRACTS_SRC}
 ) 
 

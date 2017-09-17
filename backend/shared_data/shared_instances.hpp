@@ -6,7 +6,7 @@
 #include <unordered_set>
 #include "common/common_types.hpp"
 
-enum class_type_t {
+enum room_type_t {
     LAB_INGE, LAB_BIO, LAB_PHY, LAB_CHEMI, C_INGE, C_BIO, C_PHY, C_CHEMI, LAB
 };
 // A ce propos je me demande s'il serait pas mieux de faire un poil autrement pour permettre qu'une salle soit 2 choses
@@ -16,7 +16,7 @@ enum board_type_t {
     W_BOARD, B_BOARD
 };
 
-class Classroom {
+class Room {
 private:
     std::string name;
     room_id id;

@@ -38,7 +38,7 @@ class Teacher {
 //    bool wantThisCourse(std::string course) const;
 
 private:
-    std::map<unsigned int, int> wishes;
+    std::map<hour_t, int> wishes;
     std::unordered_set<std::string> domain;
 };
 

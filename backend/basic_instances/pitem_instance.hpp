@@ -16,13 +16,13 @@ public:
 
     void setClassroom(room_id classroom);
     void setHour(hour_t hour);
-    void setShared(sharedpitem_id _shared);
+    void setShared(sharedpitem_id _shared_pitem);
     void setCourse(courseinstance_id _course);
 
 private:
     room_id classroom;
     hour_t hour;
-    sharedpitem_id shared;
+    sharedpitem_id shared_pitem;
     courseinstance_id course;
 };
 

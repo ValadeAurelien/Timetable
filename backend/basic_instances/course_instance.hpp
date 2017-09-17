@@ -22,6 +22,7 @@ public:
     void setShared(sharedcourse_id shared);
 
     void addPupils(pupils_id pupils, unsigned short number);
+    void remPupils(pupils_id pupils, unsigned short number);
 
 private:
     teacher_id teacher;

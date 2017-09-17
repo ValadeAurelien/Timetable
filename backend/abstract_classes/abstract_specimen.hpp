@@ -6,8 +6,8 @@
 #include "basic_instances/pitem_instance.hpp"
 #include "basic_instances/course_instance.hpp"
 
-typedef std::vector<PItemInstance> PItemsInstances;
-typedef std::vector<CourseInstance> CourseInstances;
+typedef std::vector<PItemInstance> PItemsInstancesType;
+typedef std::vector<CourseInstance> CourseInstancesType;
 
 typedef float mark_t;
 
@@ -15,19 +15,21 @@ class AbstractSpecimen {
 
 public:
     AbstractSpecimen();
+
     ~AbstractSpecimen();
 
     virtual void evaluate() = 0;
 
-    virtual float mutate(AbstractSpecimen *specimen, uchar min = 0, uchar max = 10) = 0;
+    virtual float mutate(AbstractSpecimen *specimen, uchar min = 0,
+                         uchar max = 10) = 0; // Apparemment on peut pas mettre des arguments par default sur une virtuelle
 
     bool operator<=(AbstractSpecimen const &specimen2) const;
 
-    mark_t getMark() const;  
+    mark_t getMark() const;
 
 protected:
-    PItemsInstances pitems;
-    CourseInstances courses;
+    PItemsInstancesType pitems;
+    CourseInstancesType courses;
     mark_t mark;
 
 private:

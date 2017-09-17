@@ -9,3 +9,5 @@ void CourseInstance::setPupils(const EquivPupilsNb& _pupils) { pupils = _pupils;
 void CourseInstance::setShared(sharedcourse_id _shared) { shared = _shared; }
 
 void CourseInstance::addPupils(const pupils_id _pupils, const unsigned short number) { pupils[_pupils] += number; }
+
+void CourseInstance::remPupils(const pupils_id _pupils, const unsigned short number) {pupils[_pupils] -= number;}

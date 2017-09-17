@@ -5,6 +5,7 @@ typedef unsigned char uchar;
 typedef unsigned char hour_t;
 
 typedef unsigned char teacher_id;
+typedef unsigned char pupils_id;
 typedef unsigned char room_id;
 typedef unsigned short sharedpitem_id;
 typedef unsigned short sharedcourse_id;

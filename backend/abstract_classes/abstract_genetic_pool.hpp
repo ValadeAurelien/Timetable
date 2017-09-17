@@ -8,20 +8,16 @@
 
 class AbstractGeneticPool
 {
-
 public:
+  AbstractGeneticPool(const SharedData& _SD);
+  ~AbstractGeneticPool() = default;
   virtual void evolve(unsigned int generations_number) = 0;
-
-
 protected:
   virtual void popAllocation() = 0;
-
-
-private:
-  std::vector<AbstractSpecimen> specimenPool; // Collection of specimen
-  std::priority_queue<AbstractSpecimen> savedSpecimen; // Best specimen recorded
-
-
+  
+  const SharedData& SD;
+  std::vector<AbstractSpecimen*> specimenPool; // Collection of specimen
+  std::priority_queue<AbstractSpecimen*> savedSpecimen; // Best specimen recorded
 };
 
 

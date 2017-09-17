@@ -1,5 +1,10 @@
 #include "abstract_specimen.hpp"
 
+AbstractSpecimen::AbstractSpecimen(const SharedData& _SD) : SD(_SD)
+{
+
+}
+
 bool AbstractSpecimen::operator<=(AbstractSpecimen const &sp) const 
 {
     return (mark < sp.getMark());
@@ -7,4 +12,3 @@ bool AbstractSpecimen::operator<=(AbstractSpecimen const &sp) const
 
 mark_t AbstractSpecimen::getMark() const { return mark; }
 
-AbstractSpecimen::AbstractSpecimen() = default;

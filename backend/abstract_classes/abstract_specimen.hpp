@@ -19,7 +19,7 @@ public:
     ~AbstractSpecimen();
 
     virtual void evaluate() = 0;
-    virtual uchar mutate(AbstractSpecimen *specimen, uchar min, uchar max) = 0; 
+    virtual uchar mutate(AbstractSpecimen *_child, uchar min, uchar max) = 0; 
     bool operator<=(AbstractSpecimen const &specimen2) const;
     mark_t getMark() const;
 
@@ -28,6 +28,7 @@ protected:
     CourseInstancesType courses;
     mark_t mark;
     const SharedData& shareddata;
+    AbstractSpecimen * child;
 private:
 
 };

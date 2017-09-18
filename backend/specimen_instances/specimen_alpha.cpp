@@ -11,12 +11,43 @@ void evaluate()
     
 }
 
-uchar mutate(AbstractSpecimen *specimen, uchar min, uchar max)
+uchar mutate(AbstractSpecimen *_child, uchar min, uchar max)
 {
-    uchar nb_mut = 0,
-          nb_mut_todo = floor( (max-min)*((float) rand()/RAND_MAX)+min ); 
-    for (int i=0; i
+    uchar nbmut_todo = floor( (max-min)*((float) rand()/RAND_MAX)+min );
+    calcProbaLaw();
+    for (uchar nbmut=0; nbmut<nbmu_todo; nbmut++)
+        chooseAndDoOperation();
+    return nbmut_todo;
 }
+
+void calcProbaLaw()
+{
+
+}
+
+operation_t chooseAndDoOperation()
+{
+    float val = (float) rand()/RAND_MAX; //on découpe un segment en 4 portions inégales de taille p_i tq \sum p_i = 1
+    if (val<proba_law.ch_room){
+        changeRoom();
+        return CHROOM;
+    }
+    val -= proba_law.ch_room;
+    if (val<proba_law.ch_hour){
+        changeHour();
+        return CHHOUR;
+    }
+    val -= proba_law.ch_hour;
+    if (val<proba_law.ch_teacher){
+        changeTeacher();
+        return CHTEACHER;
+    }
+    else {
+        changePupils();
+        return CHPUPILS;
+    }
+}
+
 
 void changeRoom()
 {

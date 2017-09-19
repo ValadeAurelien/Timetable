@@ -15,7 +15,7 @@ public:
 
     teacher_id getTeacher() const;
     const EquivPupilsNb& getPupils() const;
-    sharedcourse_id getShared() const;
+    sharedcourse_id getSharedId() const;
 
     void setTeacher(teacher_id teacher);
     void setPupils(const EquivPupilsNb& pupils);
@@ -27,7 +27,7 @@ public:
 private:
     teacher_id teacher;
     EquivPupilsNb pupils;
-    sharedcourse_id shared;
+    sharedcourse_id shared_id;
 };
 
 #endif

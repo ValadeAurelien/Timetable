@@ -1,9 +1,13 @@
 #include "shared_instances.hpp"
 
-int Teacher::isHappyToWork(hour_t hour) const {
-    return wishes.at(hour);
+teacher_id Teacher::getId() const { 
+    return id;
 }
 
-//bool Teacher::wantThisCourse(std::string course) const {
-//    return this->domain.find(course)
-//
+int Teacher::isHappyToWork(hour_t hour) const {
+    return ttwishes.at(hour);
+}
+
+bool Teacher::wantsCourse(sharedcourse_id  course) const {
+    return (courseswishes.count(course) > 0);
+}

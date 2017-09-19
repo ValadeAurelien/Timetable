@@ -1,12 +1,14 @@
 #ifndef SHARED_DATA_HEADER
 #define SHARED_DATA_HEADER
 #include "common/common_types.hpp"
+#include "shared_data/shared_instances.hpp"
+#include <vector>
 
-typedef vector<Teacher> TeachersType;
-typedef vector<Room> RoomsType;
-typedef vector<Pupils> PupilssType;
-typedef vector<SharedPitem> SharedPItemsType;
-typedef vector<SharedCourse> SharedCoursesType;
+typedef std::vector<Teacher> TeachersType;
+typedef std::vector<Room> RoomsType;
+typedef std::vector<Pupils> PupilssType;
+typedef std::vector<SharedPItem> SharedPItemsType;
+typedef std::vector<SharedCourse> SharedCoursesType;
 
 class SharedData
 {
@@ -14,12 +16,13 @@ class SharedData
     SharedData();
     ~SharedData();
 
-    const TeachersType& getSharedTeachers() const;
-    const RoomsType& getSharedRooms() const;
-    const PupilssType& getSharedPupilss() const;
+    const TeachersType& getTeachers() const;
+    const RoomsType& getRooms() const;
+    const PupilssType& getPupilss() const;
     const SharedPItemsType& getSharedPItems() const;
     const SharedCoursesType& getSharedCourses() const;
     const hour_t getNbHoursPerWeek() const;
+    const room_id getNbRooms() const;
 
   private:
     TeachersType Teachers;

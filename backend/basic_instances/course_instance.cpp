@@ -2,11 +2,11 @@
 
 teacher_id CourseInstance::getTeacher() const { return teacher; }
 const EquivPupilsNb& CourseInstance::getPupils() const { return pupils; }
-sharedcourse_id CourseInstance::getShared() const { return shared; }
+sharedcourse_id CourseInstance::getSharedId() const { return shared_id; }
 
 void CourseInstance::setTeacher(teacher_id _teacher) { teacher = _teacher; }
 void CourseInstance::setPupils(const EquivPupilsNb& _pupils) { pupils = _pupils; }
-void CourseInstance::setShared(sharedcourse_id _shared) { shared = _shared; }
+void CourseInstance::setShared(sharedcourse_id _shared_id) { shared_id = _shared_id; }
 
 void CourseInstance::addPupils(const pupils_id _pupils, const unsigned short number) { pupils[_pupils] += number; }
 

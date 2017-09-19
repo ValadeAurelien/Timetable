@@ -3,7 +3,7 @@
 
 #include "abstract_classes/abstract_specimen.hpp"
 #include "shared_data/shared_data.hpp"
-#include "shared_data/shared_intances.hpp"
+#include "shared_data/shared_instances.hpp"
 #include "basic_instances/pitem_instance.hpp"
 #include "basic_instances/course_instance.hpp"
 #include "common/common_types.hpp"

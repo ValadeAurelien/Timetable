@@ -1,31 +1,31 @@
 #include "specimen_alpha.hpp"
 #include <cmath>
 
-SpecimenAlpha(const SharedData& _SD) : AbstractSpecimen(_SD)
+SpecimenAlpha::SpecimenAlpha(const SharedData& _SD) : AbstractSpecimen(_SD)
 {
 
 }
 
-void evaluate()
+void SpecimenAlpha::evaluate()
 {
     
 }
 
-uchar mutate(AbstractSpecimen *_child, uchar min, uchar max)
+uchar SpecimenAlpha::mutate(AbstractSpecimen *_child, uchar min, uchar max)
 {
     uchar nbmut_todo = (uchar) uniformDistrib(min, max) ;
     calcProbaLaw();
-    for (uchar nbmut=0; nbmut<nbmu_todo; nbmut++)
+    for (uchar nbmut=0; nbmut<nbmut_todo; nbmut++)
         chooseAndDoOperation();
     return nbmut_todo;
 }
 
-void calcProbaLaw()
+void SpecimenAlpha::calcProbaLaw()
 {
 
 }
 
-operation_t chooseAndDoOperation()
+operation_t SpecimenAlpha::chooseAndDoOperation()
 {
     float val = (float) rand()/RAND_MAX; //on découpe un segment en 4 portions inégales de taille p_i tq \sum p_i = 1
     if (val<proba_law.ch_room){
@@ -49,29 +49,29 @@ operation_t chooseAndDoOperation()
 }
 
 
-void changeRoom()
+void SpecimenAlpha::changeRoom()
 {
     ushort to_mod = (ushort) uniformDistrib(0, pitems.size()-1);
     pitems[to_mod].room = (uchar) uniformDistrib(0, shareddata.getNbRooms());
 }
 
-void changeHour()
+void SpecimenAlpha::changeHour()
 {
     ushort to_mod = (ushort) uniformDistrib(0, pitems.size()-1);
     pitems[to_mod].hour = (uchar) uniformDistrib(0, shareddata.getNbHoursPerWeek());
 }
 
-void changeTeacher()
+void SpecimenAlpha::changeTeacher()
 {
-    ushort to_mod = (ushort) uniformDistrib(0, pitems.size()-1);
-    course_id course = courses[pitems[to_mod].course].id;
+    ushort to_mod = (ushort) uniformDistrib(0, courses.size()-1);
+    sharedcourse_id sharedcourse = courses[to_mod].getSharedId();
     std::vector<teacher_id> corres_teachers;
     for (auto const& T : shareddata.getTeachers())
-        if (T.wantCourse(course)) corres_teachers.push_back(T.id);
-    pitems[to_mod].teacher = corres_teachers[uniformDistrib(0, corres_teachers.size()-1)];
+        if (T.wantsCourse(sharedcourse)) corres_teachers.push_back(T.getId());
+    courses[to_mod].setTeacher( corres_teachers[uniformDistrib(0, corres_teachers.size()-1)] );
 }
 
-void changePupils()
+void SpecimenAlpha::changePupils()
 {
 
 }

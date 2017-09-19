@@ -27,7 +27,7 @@
 //};
 
 struct PItemInstance {
-    room_id Room;
+    room_id room;
     hour_t hour;
     sharedpitem_id shared_pitem;
     courseinstance_id course;

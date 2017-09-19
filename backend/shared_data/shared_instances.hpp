@@ -33,12 +33,16 @@ private:
 
 class Teacher {
 
+public:
+    teacher_id getId() const;
+
     int isHappyToWork(hour_t hour) const;
-//    bool wantThisCourse(std::string course) const;
+    bool wantsCourse(sharedcourse_id course) const;
 
 private:
+    teacher_id id;
     TimeTableWishes ttwishes;
-    std::unordered_set<std::string> domain;
+    std::unordered_set<sharedcourse_id> courseswishes;
 };
 
 class Pupils {

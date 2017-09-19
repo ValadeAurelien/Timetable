@@ -10,7 +10,6 @@ set(BASIC_INSTANCES_SRC
 set(ABSTRACTS_SRC
         abstract_classes/abstract_genetic_pool.cpp
         abstract_classes/abstract_specimen.cpp
-        abstract_classes/mark.cpp
 )
 set(SHARED_DATA_SRC
   shared_data/shared_data.cpp

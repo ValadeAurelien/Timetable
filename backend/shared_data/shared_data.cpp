@@ -1,16 +1,16 @@
 #include "shared_data.hpp"
 
-const TeachersType& SharedData::getSharedTeachers() const
+const TeachersType& SharedData::getTeachers() const
 {
-    return SharedTeachers;
+    return Teachers;
 }
 
-const RoomsType& SharedData::getSharedRooms() const
+const RoomsType& SharedData::getRooms() const
 {
     return Rooms;
 }
 
-const PupilssType& SharedData::getSharedPupilss() const
+const PupilssType& SharedData::getPupilss() const
 {
     return Pupilss;
 }

@@ -12,3 +12,7 @@ bool AbstractSpecimen::operator<=(AbstractSpecimen const &sp) const
 
 mark_t AbstractSpecimen::getMark() const { return mark; }
 
+int uniformDistrib(int min, int max) { 
+    return floor( (max-min) * ((float) rand()/RAND_MAX) + min + 0.5); 
+}
+

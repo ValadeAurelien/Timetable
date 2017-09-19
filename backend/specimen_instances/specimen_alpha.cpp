@@ -13,7 +13,7 @@ void evaluate()
 
 uchar mutate(AbstractSpecimen *_child, uchar min, uchar max)
 {
-    uchar nbmut_todo = floor( (max-min)*((float) rand()/RAND_MAX)+min );
+    uchar nbmut_todo = (uchar) uniformDistrib(min, max) ;
     calcProbaLaw();
     for (uchar nbmut=0; nbmut<nbmu_todo; nbmut++)
         chooseAndDoOperation();
@@ -51,17 +51,24 @@ operation_t chooseAndDoOperation()
 
 void changeRoom()
 {
-
+    ushort to_mod = (ushort) uniformDistrib(0, pitems.size()-1);
+    pitems[to_mod].room = (uchar) uniformDistrib(0, shareddata.getNbRooms());
 }
 
 void changeHour()
 {
-
+    ushort to_mod = (ushort) uniformDistrib(0, pitems.size()-1);
+    pitems[to_mod].hour = (uchar) uniformDistrib(0, shareddata.getNbHoursPerWeek());
 }
 
 void changeTeacher()
 {
-
+    ushort to_mod = (ushort) uniformDistrib(0, pitems.size()-1);
+    course_id course = courses[pitems[to_mod].course].id;
+    std::vector<teacher_id> corres_teachers;
+    for (auto const& T : shareddata.getTeachers())
+        if (T.wantCourse(course)) corres_teachers.push_back(T.id);
+    pitems[to_mod].teacher = corres_teachers[uniformDistrib(0, corres_teachers.size()-1)];
 }
 
 void changePupils()

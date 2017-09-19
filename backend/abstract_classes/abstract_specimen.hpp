@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include <cmath>
 #include "basic_instances/pitem_instance.hpp"
 #include "basic_instances/course_instance.hpp"
 #include "shared_data/shared_data.hpp"
@@ -24,6 +25,8 @@ public:
     mark_t getMark() const;
 
 protected:
+    static int uniformDistrib(int min, int max); 
+
     PItemsInstancesType pitems;
     CourseInstancesType courses;
     mark_t mark;

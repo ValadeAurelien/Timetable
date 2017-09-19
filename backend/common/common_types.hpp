@@ -1,8 +1,12 @@
 #ifndef COMMON_TYPES_HEADER
 #define COMMON_TYPES_HEADER
+#include <vector>
 
 typedef unsigned char uchar;
+typedef unsigned short ushort;
 typedef unsigned char hour_t;
+
+typedef std::vector<uchar> TimeTableWishes;
 
 // 0 if not set
 

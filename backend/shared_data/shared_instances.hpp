@@ -7,10 +7,8 @@
 #include "common/common_types.hpp"
 
 enum room_type_t {
-    LAB_INGE, LAB_BIO, LAB_PHY, LAB_CHEMI, C_INGE, C_BIO, C_PHY, C_CHEMI, LAB
+    LAB_INGE=1, LAB_BIO, LAB_PHY, LAB_CHEMI, C_INGE, C_BIO, C_PHY, C_CHEMI, LAB
 };
-// A ce propos je me demande s'il serait pas mieux de faire un poil autrement pour permettre qu'une salle soit 2 choses
-// à la fois
 
 enum board_type_t {
     W_BOARD, B_BOARD
@@ -22,7 +20,8 @@ private:
     room_id id;
     unsigned char capacity;
     bool projector;
-    class_type_t class_type;
+    room_type_t room_type1,
+                room_type2;
     board_type_t board_type;
 };
 
@@ -38,7 +37,7 @@ class Teacher {
 //    bool wantThisCourse(std::string course) const;
 
 private:
-    std::map<hour_t, int> wishes;
+    TimeTableWishes ttwishes;
     std::unordered_set<std::string> domain;
 };
 

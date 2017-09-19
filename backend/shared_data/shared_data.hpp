@@ -2,13 +2,14 @@
 #define SHARED_DATA_HEADER
 
 #include <vector>
+
 #include "shared_data/shared_instances.hpp"
 
-typedef vector<Teacher> TeachersType;
-typedef vector<Room> RoomsType;
-typedef vector<Pupils> PupilssType;
-typedef vector<SharedPItem> SharedPItemsType;
-typedef vector<SharedCourse> SharedCoursesType;
+typedef std::vector<Teacher> TeachersType;
+typedef std::vector<Room> RoomsType;
+typedef std::vector<Pupils> PupilssType;
+typedef std::vector<SharedPItem> SharedPItemsType;
+typedef std::vector<SharedCourse> SharedCoursesType;
 
 class SharedData
 {

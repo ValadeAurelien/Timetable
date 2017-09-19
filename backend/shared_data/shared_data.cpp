@@ -34,3 +34,7 @@ const room_id SharedData::getNbRooms() const
 {
     return nb_rooms;
 }
+
+int SharedData::establishConn(char *filepath) {
+    return sqlite3_open_v2(filepath, &db, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, nullptr);
+}

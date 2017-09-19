@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include <cmath>
 #include "basic_instances/pitem_instance.hpp"
 #include "basic_instances/course_instance.hpp"
 #include "shared_data/shared_data.hpp"
@@ -19,15 +20,18 @@ public:
     ~AbstractSpecimen();
 
     virtual void evaluate() = 0;
-    virtual float mutate(AbstractSpecimen *specimen, uchar min, uchar max) = 0; 
+    virtual uchar mutate(AbstractSpecimen *_child, uchar min, uchar max) = 0; 
     bool operator<=(AbstractSpecimen const &specimen2) const;
     mark_t getMark() const;
 
 protected:
+    static int uniformDistrib(int min, int max); 
+
     PItemsInstancesType pitems;
     CourseInstancesType courses;
     mark_t mark;
     const SharedData& shareddata;
+    AbstractSpecimen * child;
 private:
 
 };

@@ -4,6 +4,7 @@
 #include <queue>
 
 #include "abstract_specimen.hpp"
+#include "shared_data/shared_data.hpp"
 
 
 class AbstractGeneticPool

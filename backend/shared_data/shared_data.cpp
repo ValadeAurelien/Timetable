@@ -41,7 +41,12 @@ int SharedData::establishConn(char *filepath) {
     return sqlite3_open_v2(filepath, &db, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, nullptr);
 }
 
-int SharedData::reIndexTeachers() {
+int SharedData::reIndexTeachers()
+{
+    std::vector<int> idTeachers = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
+
+    char *sql_request;
+
 
 }
 
@@ -70,7 +75,10 @@ std::vector<int> SharedData::buildReIndexVector(const char *sql_request)
         }
 
         sqlite3_finalize(request);
+
+
     }
 
     return idVector;
+
 }

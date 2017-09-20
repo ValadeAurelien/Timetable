@@ -27,7 +27,7 @@ public:
 private:
     teacher_id teacher;
     EquivPupilsNb pupils;
-    sharedcourse_id shared_id;
+    sharedcourse_id shared_i;
 };
 
 #endif

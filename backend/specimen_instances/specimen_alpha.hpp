@@ -41,12 +41,19 @@ struct proba_law_t{
 class SpecimenAlpha : public AbstractSpecimen {
 public:
     SpecimenAlpha(const SharedData& _SD);
+    SpecimenAlpha(const SpecimenAlpha& SA) = default;
     ~SpecimenAlpha() = default;
-    void evaluate() = 0;
+    SpecimenAlpha& operator=(const SpecimenAlpha& SA);
+
+    void evaluate();
     uchar mutateToChild(AbstractSpecimen *specimen, uchar min, uchar max); 
     uchar mutate(uchar min, uchar max); 
+
+    const marks_t& getMarks() const;
+    const proba_law_t& getProbaLaw() const;
+
 private:
-    void copyToChild();
+
     void calcProbaLaw();
     operation_t chooseAndDoOperation();
     void changeRoom();

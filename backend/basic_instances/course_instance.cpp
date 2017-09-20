@@ -1,13 +1,13 @@
 #include "course_instance.hpp"
 
 teacher_id CourseInstance::getTeacher() const { return teacher; }
-const EquivPupilsNb& CourseInstance::getPupils() const { return pupils; }
+const EqPupilsNbType& CourseInstance::getEqPupilsNb() const { return eqpupilsnb; }
 sharedcourse_id CourseInstance::getSharedId() const { return shared_id; }
 
 void CourseInstance::setTeacher(teacher_id _teacher) { teacher = _teacher; }
-void CourseInstance::setPupils(const EquivPupilsNb& _pupils) { pupils = _pupils; }
+void CourseInstance::setPupils(const EqPupilsNbType& _eqpupilsnb) { eqpupilsnb = _eqpupilsnb; }
 void CourseInstance::setShared(sharedcourse_id _shared_id) { shared_id = _shared_id; }
 
-void CourseInstance::addPupils(const pupils_id _pupils, const unsigned short number) { pupils[_pupils] += number; }
+void CourseInstance::addEqPupils(pupils_id pid, ushort number) { eqpupilsnb[pid] += number; }
 
-void CourseInstance::remPupils(const pupils_id _pupils, const unsigned short number) {pupils[_pupils] -= number;}
+void CourseInstance::remEqPupils(pupils_id pid, ushort number) { eqpupilsnb[pid] -= number;}

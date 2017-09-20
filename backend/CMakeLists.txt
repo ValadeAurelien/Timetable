@@ -33,3 +33,7 @@ add_executable(main_backend
   ${GENETIC_POOL_SRC}
 ) 
 
+target_link_libraries(main_backend
+    sqlite3 
+)
+

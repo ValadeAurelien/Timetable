@@ -9,6 +9,15 @@ SpecimenAlpha::SpecimenAlpha(const SharedData& _SD) : AbstractSpecimen(_SD)
 
 }
 
+SpecimenAlpha& SpecimenAlpha::operator=(const SpecimenAlpha& SA)
+{
+    pitems = SA.getPItems();
+    courses = SA.getCourses();
+    marks = SA.getMarks();
+    proba_law = SA.getProbaLaw();
+    mark = SA.getMark();
+}
+
 void SpecimenAlpha::evaluate()
 {
    marks_t m;
@@ -22,7 +31,10 @@ uchar SpecimenAlpha::mutateToChild(AbstractSpecimen *_child, uchar min, uchar ma
     return child->mutate(min, max);
 }
 
-uchar SpecimenAlpha::mutateToChild(uchar min, uchar max)
+const marks_t& SpecimenAlpha::getMarks() const { return marks; }
+const proba_law_t& SpecimenAlpha::getProbaLaw() const { return proba_law; }
+
+uchar SpecimenAlpha::mutate(uchar min, uchar max)
 {
     uchar nbmut_todo = (uchar) uniformDistrib(min, max) ;
     calcProbaLaw();
@@ -53,11 +65,11 @@ void SpecimenAlpha::calcProbaLaw()
                   + marks.eqpupils_size_spread
                   + marks.eqpupils_wrong_corecurriculum
                   + marks.eqpupils_diff;
-    float sum_p = p.ch_room + p.ch_hour + p.ch_teacher + p.ch_pupils;
+    float sum_p = p.ch_room + p.ch_hour + p.ch_teacher + p.ch_eqpupils;
     proba_law.ch_room = p.ch_room / ( sum_p );
     proba_law.ch_hour = p.ch_hour / ( sum_p );
     proba_law.ch_teacher = p.ch_teacher / ( sum_p );
-    proba_law.ch_pupils = p.ch_pupils / ( sum_p );
+    proba_law.ch_eqpupils = p.ch_eqpupils / ( sum_p );
 }
 
 operation_t SpecimenAlpha::chooseAndDoOperation()
@@ -112,15 +124,20 @@ void SpecimenAlpha::changeEqPupils()
            c_dest = (ushort) uniformDistrib(0, courses.size()-1);
     CourseInstance& course_prov = courses[c_prov],
                   & course_dest = courses[c_dest];
-    auto& eqpunb = courses_prov.pupils.at(uniformDistrib(0, course_prov.pupils.size()-1));
+    
+    auto it = course_prov.getEqPupilsNb().begin();
+    uchar eqpu_id = uniformDistrib(0, course_prov.getEqPupilsNb().size()-1);
+    for (int i=0; i<eqpu_id; i++) it++;
+
+    auto& eqpunb = *it;
     bool full = uniformDistrib(0, 1);
     if (full){
-        course_dest.add_eqpunb(eqpunb.first, eqpunb.second);
-        course_prov.rem_eqpunb(eqpunb.first, eqpunb.second);
+        course_dest.addEqPupils(eqpunb.first, eqpunb.second);
+        course_prov.remEqPupils(eqpunb.first, eqpunb.second);
     }
     else {
-        course_dest.add_eqpunb(eqpunb.first, floor(eqpunb.second/2));
-        course_prov.rem_eqpunb(eqpunb.first, floor(eqpunb.second/2));
+        course_dest.addEqPupils(eqpunb.first, floor(eqpunb.second/2));
+        course_prov.remEqPupils(eqpunb.first, floor(eqpunb.second/2));
     }
 }
 

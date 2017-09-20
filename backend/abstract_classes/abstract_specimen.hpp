@@ -17,11 +17,18 @@ class AbstractSpecimen {
 
 public:
     AbstractSpecimen(const SharedData& _SD);
+    AbstractSpecimen(const AbstractSpecimen& AS) = default;
     ~AbstractSpecimen();
+    AbstractSpecimen& operator=(const AbstractSpecimen& AS);
 
     virtual void evaluate() = 0;
-    virtual uchar mutate(AbstractSpecimen *_child, uchar min, uchar max) = 0; 
+    virtual uchar mutateToChild(AbstractSpecimen *_child, uchar min, uchar max) = 0; 
+    virtual uchar mutate(uchar min, uchar max) = 0; 
     bool operator<=(AbstractSpecimen const &specimen2) const;
+
+    const SharedData& getSharedData() const;
+    const PItemsInstancesType& getPItems() const;
+    const CourseInstancesType& getCourses() const;
     mark_t getMark() const;
 
 protected:

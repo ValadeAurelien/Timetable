@@ -6,7 +6,7 @@ typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned char hour_t;
 
-typedef std::vector<uchar> TimeTableWishes;
+typedef std::vector<uchar> TimeTableWishesType;
 
 // 0 if not set
 

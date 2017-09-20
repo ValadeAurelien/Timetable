@@ -15,14 +15,18 @@ enum board_type_t {
 };
 
 class Room {
+public: 
+    const TimeTableWishesType& getTimeTableWishes() const;
+
 private:
     std::string name;
     room_id id;
-    unsigned char capacity;
+    uchar number;
     bool projector;
     room_type_t room_type1,
                 room_type2;
     board_type_t board_type;
+    TimeTableWishesType ttwishes;
 };
 
 class SharedPItem {
@@ -36,12 +40,12 @@ class Teacher {
 public:
     teacher_id getId() const;
 
-    int isHappyToWork(hour_t hour) const;
+    const TimeTableWishesType& getTimeTableWishes() const;
     bool wantsCourse(sharedcourse_id course) const;
 
 private:
     teacher_id id;
-    TimeTableWishes ttwishes;
+    TimeTableWishesType ttwishes;
     std::unordered_set<sharedcourse_id> courseswishes;
 };
 

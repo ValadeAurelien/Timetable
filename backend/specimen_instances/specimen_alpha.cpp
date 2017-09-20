@@ -3,6 +3,7 @@
 #include "basic_instances/course_instance.hpp"
 #include "common/common_types.hpp"
 #include <cmath>
+#define MAX(a, b)=((a)>(b)?(a):(b))
 
 SpecimenAlpha::SpecimenAlpha(const SharedData& _SD) : AbstractSpecimen(_SD)
 {
@@ -20,8 +21,33 @@ SpecimenAlpha& SpecimenAlpha::operator=(const SpecimenAlpha& SA)
 
 void SpecimenAlpha::evaluate()
 {
-   marks_t m;
+    marks_t m;
+    teacher_id tid;
 
+    for (auto const& course : courses){
+        ShareCourseType& sharedscourse = shareddata.getSharedCourses().at(course.getSharedId());
+        m.course_wrong_number += MAX(course.number - sharedcourse.number, 0 ) / sharedcourse.number;
+    }
+
+    for (auto const& p1 : pitems){
+        SharedPItemType& sharedpitem = shareddata.getSharedPItem().at(p1.shared_pitem);
+        CourseInstancesType& course = courses.at(p1.course);
+        ShareCourseType& sharedscourse = shareddata.getSharedCourses().at(course.getSharedId());
+        tid = course.teacher_id;
+        Teacher& teacher = shareddata.getTeachers().at(tid);
+        Room& room = shareddata.getRooms().at(p1.room);
+
+        m.room_wrong_number += MAX(course.number - room.number, 0 ) / room.number;
+
+        m.teachers_hours_violation += teacher.getTimeTableWishes().at(p1.hour);
+        m.establishment_hours_violation += shareddata.getEstabTimeTableWishes().at(p1.hour);
+        m.room_hours_violation += room.getTimeTableWishes().at(p1.hour);
+
+
+        for (auto const& p2 : pitems){
+            
+        }
+    }
 }
 
 uchar SpecimenAlpha::mutateToChild(AbstractSpecimen *_child, uchar min, uchar max)

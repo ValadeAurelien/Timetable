@@ -56,11 +56,14 @@ private:
 
     void calcProbaLaw();
     operation_t chooseAndDoOperation();
+
     void changeRoom();
     void changeHour();
     void changeTeacher();
     void changeEqPupils();
+
     marks_t marks;
+    static marks_t coefs;
     proba_law_t proba_law;
 };
 

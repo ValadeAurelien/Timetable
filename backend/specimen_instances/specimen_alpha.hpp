@@ -11,30 +11,31 @@
 
 
 struct marks_t{
-    float teacher_overlap = 0                 ,
-          room_overlap = 0                    ,
-          simpupils_overlap = 0               ,
-          course_wrong_number = 0             ,
-          room_wrong_number = 0               ,
-          simpupils_spread = 0                ,
-          simpupils_size_spread = 0           ,
-          simpupils_corecurriculum_corres = 0 ,
-          simpupils_prox = 0                  ,
-          teachers_hours_violations = 0       , 
-          establishment_hours_violations = 0  ,
-          pitem_hours_violations = 0          ,
-          room_hours_violations = 0           ;
+    float teacher_overlap = 0                ,
+          room_overlap = 0                   ,
+          eqpupils_overlap = 0               ,
+          course_wrong_number = 0            ,
+          room_wrong_number = 0              ,
+          inappropriate_room = 0             ,
+          eqpupils_spread = 0                ,
+          eqpupils_size_spread = 0           ,
+          eqpupils_wrong_corecurriculum = 0  ,
+          eqpupils_diff = 0                  ,
+          teachers_hours_violation = 0       , 
+          establishment_hours_violation = 0  ,
+          pitem_hours_violation = 0          ,
+          room_hours_violation = 0           ;
 };
 
 enum operation_t {
-    CHROOM, CHHOUR, CHTEACHER, CHPUPILS
+    CHROOM, CHHOUR, CHTEACHER, CHEQPUPILS
 };
 
 struct proba_law_t{
-    float ch_room,
-          ch_hour,
-          ch_teacher,
-          ch_pupils;
+    float ch_room=0,
+          ch_hour=0,
+          ch_teacher=0,
+          ch_eqpupils=0;
 };
 
 class SpecimenAlpha : public AbstractSpecimen {
@@ -42,14 +43,16 @@ public:
     SpecimenAlpha(const SharedData& _SD);
     ~SpecimenAlpha() = default;
     void evaluate() = 0;
-    uchar mutate(AbstractSpecimen *specimen, uchar min, uchar max) = 0; 
+    uchar mutateToChild(AbstractSpecimen *specimen, uchar min, uchar max); 
+    uchar mutate(uchar min, uchar max); 
 private:
+    void copyToChild();
     void calcProbaLaw();
     operation_t chooseAndDoOperation();
     void changeRoom();
     void changeHour();
     void changeTeacher();
-    void changePupils();
+    void changeEqPupils();
     marks_t marks;
     proba_law_t proba_law;
 };

@@ -6,10 +6,9 @@
 #include "pitem_instance.hpp"
 #include "common/common_types.hpp"
 
-typedef std::map<pupils_id , unsigned short> EquivPupilsNb;
+typedef std::map<pupils_id , ushort> EquivPupilsNb;
 
-class CourseInstance {
-public:
+struct CourseInstance {
     CourseInstance();
     ~CourseInstance();
 
@@ -21,10 +20,9 @@ public:
     void setPupils(const EquivPupilsNb& pupils);
     void setShared(sharedcourse_id shared);
 
-    void addPupils(pupils_id pupils, unsigned short number);
-    void remPupils(pupils_id pupils, unsigned short number);
+    void addPupils(pupils_id pupils, ushort number);
+    void remPupils(pupils_id pupils, ushort number);
 
-private:
     teacher_id teacher;
     EquivPupilsNb pupils;
     sharedcourse_id shared_i;

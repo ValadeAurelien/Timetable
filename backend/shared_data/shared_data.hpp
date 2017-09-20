@@ -33,6 +33,7 @@ class SharedData
     int reIndexSharedCourses();
 
     std::vector<int> buildReIndexVector(const char *sql_request);
+    int execRequest(const char *sql_request); // Exec a request wich do not expect any return
 
     const TeachersType& getTeachers() const;
     const RoomsType& getRooms() const;

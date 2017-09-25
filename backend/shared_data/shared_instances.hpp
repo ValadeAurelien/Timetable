@@ -17,6 +17,7 @@ enum board_type_t {
 class Room {
 public: 
     const TimeTableWishesType& getTimeTableWishes() const;
+    ushort compare(const Room& room) const;
 
 private:
     std::string name;
@@ -30,9 +31,11 @@ private:
 };
 
 class SharedPItem {
+public:
+    const TimeTableWishesType& getTimeTableWishes() const;
 private:
     unsigned int duration;
-
+    TimeTableWishesType ttwishes;
 };
 
 class Teacher {
@@ -49,11 +52,9 @@ private:
     std::unordered_set<sharedcourse_id> courseswishes;
 };
 
-class Pupils {
-    /* Faudra voir comment on definit les eleves....
-    je propose éventuellement avec des string par type comme ça c'est dynamique avec la db plutôt qu'avec des defines
-    qui emppècheraient la dynamicité des matières avec la db
-     */
+class EqPupils {
+public:
+
 
 };
 
@@ -61,7 +62,7 @@ class SharedCourse {
 
 private:
     std::string level;
-    unsigned short number;
+    ushort number;
     teacher_id teacher;
     room_id room;
 };

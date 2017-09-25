@@ -31,6 +31,7 @@ struct PItemInstance {
     hour_t hour;
     sharedpitem_id shared_pitem;
     courseinstance_id course;
+
 };
 
 

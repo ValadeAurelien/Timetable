@@ -14,7 +14,7 @@ typedef std::vector<uchar> TimeTableWishesType;
 #define NO_ROOM 0
 
 typedef unsigned char teacher_id;
-typedef unsigned char pupils_id;
+typedef unsigned char eqpupils_id;
 typedef unsigned char room_id;
 
 // can not be unset

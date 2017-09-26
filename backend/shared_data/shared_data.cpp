@@ -23,7 +23,6 @@ int SharedData::reIndexTeachers() {
 
     return execRequest(updateReq.c_str()); // Exécute la requête et retourne le code d'erreur SQLite
 
-
 }
 
 int SharedData::reIndexRooms() {

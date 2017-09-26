@@ -10,8 +10,91 @@ int SharedData::establishConn(char *filepath) {
 int SharedData::reIndexTeachers() {
     std::vector<int> idTeachers = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
 
+    std::string updateReq;
+
+    for (unsigned int i = 0; i < idTeachers.size(); i++) {
+        //Update ID in Teachers Table
+        updateReq += "UPDATE Teachers SET id =" + std::to_string(i) + "WHERE id=" + std::to_string(idTeachers.at(i));
+        updateReq += "; \n";
+
+        //Update Refs in other tables
+        //TO DO
+    }
+
+    return execRequest(updateReq.c_str()); // Exécute la requête et retourne le code d'erreur SQLite
 
 
+}
+
+int SharedData::reIndexRooms() {
+    std::vector<int> idRooms = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
+
+    std::string updateReq;
+
+    for (unsigned int i = 0; i < idRooms.size(); i++) {
+        //Update ID in Teachers Table
+        updateReq += "UPDATE Rooms SET id =" + std::to_string(i) + "WHERE id=" + std::to_string(idRooms.at(i));
+        updateReq += "; \n";
+
+        //Update Refs in other tables
+        //TO DO
+    }
+
+    return execRequest(updateReq.c_str()); // Exécute la requête et retourne le code d'erreur SQLite
+
+}
+
+int SharedData::reIndexPupilss() {
+    std::vector<int> idPupils = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
+
+    std::string updateReq;
+
+    for (unsigned int i = 0; i < idPupils.size(); i++) {
+        //Update ID in Teachers Table
+        updateReq += "UPDATE Teachers SET id =" + std::to_string(i) + "WHERE id=" + std::to_string(idPupils.at(i));
+        updateReq += "; \n";
+
+        //Update Refs in other tables
+        //TO DO
+    }
+
+    return execRequest(updateReq.c_str()); // Exécute la requête et retourne le code d'erreur SQLite
+}
+
+int SharedData::reIndexSharedPItems() {
+    std::vector<int> idSharedPItems = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
+
+    std::string updateReq;
+
+    for (unsigned int i = 0; i < idSharedPItems.size(); i++) {
+        //Update ID in Teachers Table
+        updateReq +=
+                "UPDATE SharedPItems SET id =" + std::to_string(i) + "WHERE id=" + std::to_string(idSharedPItems.at(i));
+        updateReq += "; \n";
+
+        //Update Refs in other tables
+        //TO DO
+    }
+
+    return execRequest(updateReq.c_str()); // Exécute la requête et retourne le code d'erreur SQLite
+}
+
+int SharedData::reIndexSharedCourses() {
+    std::vector<int> idSharedCourses = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
+
+    std::string updateReq;
+
+    for (unsigned int i = 0; i < idSharedCourses.size(); i++) {
+        //Update ID in Teachers Table
+        updateReq += "UPDATE SharedCourses SET id =" + std::to_string(i) + "WHERE id=" +
+                     std::to_string(idSharedCourses.at(i));
+        updateReq += "; \n";
+
+        //Update Refs in other tables
+        //TO DO
+    }
+
+    return execRequest(updateReq.c_str()); // Exécute la requête et retourne le code d'erreur SQLite
 }
 
 std::vector<int> SharedData::buildReIndexVector(const char *sql_request) {
@@ -35,8 +118,6 @@ std::vector<int> SharedData::buildReIndexVector(const char *sql_request) {
         }
 
         sqlite3_finalize(request);
-
-
     }
 
     return idVector;
@@ -46,7 +127,7 @@ std::vector<int> SharedData::buildReIndexVector(const char *sql_request) {
 int SharedData::execRequest(const char *sql_request) {
     sqlite3_stmt *request;
 
-    int err = sqlite3_prepare_v2(db, sql_request, strlen(sql_request), &request, 0);
+    int err = sqlite3_prepare_v2(db, sql_request, strlen(sql_request), &request, nullptr);
 
     if (!err) {
         while (err == SQLITE_OK || err == SQLITE_ROW) {
@@ -54,7 +135,6 @@ int SharedData::execRequest(const char *sql_request) {
         }
 
         sqlite3_finalize(request);
-
     }
 
     return err;
@@ -87,3 +167,6 @@ const hour_t SharedData::getNbHoursPerWeek() const {
 const room_id SharedData::getNbRooms() const {
     return nb_rooms;
 }
+
+
+

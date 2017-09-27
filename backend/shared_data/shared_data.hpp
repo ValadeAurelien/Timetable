@@ -8,9 +8,10 @@
 
 typedef std::vector<Teacher> TeachersType;
 typedef std::vector<Room> RoomsType;
-typedef std::vector<Pupils> PupilssType;
+typedef std::vector<EqPupils> EqPupilssType;
 typedef std::vector<SharedPItem> SharedPItemsType;
 typedef std::vector<SharedCourse> SharedCoursesType;
+typedef std::vector<CoreCurriculum> CoreCurriculumsType;
 
 class SharedData
 {
@@ -22,13 +23,13 @@ class SharedData
 
     int loadTeachers();
     int loadRooms();
-    int loadPupilss();
+    int loadEqPupilss();
     int loadSharedPItems();
     int loadSharedCourses();
 
     int reIndexTeachers();
     int reIndexRooms();
-    int reIndexPupilss();
+    int reIndexEqPupilss();
     int reIndexSharedPItems();
     int reIndexSharedCourses();
 
@@ -37,11 +38,13 @@ class SharedData
 
     const TeachersType& getTeachers() const;
     const RoomsType& getRooms() const;
-    const PupilssType& getPupilss() const;
+    const EqPupilssType& getEqPupilss() const;
     const SharedPItemsType& getSharedPItems() const;
     const SharedCoursesType& getSharedCourses() const;
+    const CoreCurriculumsType& getCoreCurriculums() const;
     const hour_t getNbHoursPerWeek() const;
     const room_id getNbRooms() const;
+    const TimeTableWishesType& getEstabTimeTableWishes() const;
 
   private:
 
@@ -50,11 +53,13 @@ class SharedData
 
     TeachersType Teachers;
     RoomsType Rooms;
-    PupilssType Pupilss;
+    EqPupilssType EqPupilss;
     SharedPItemsType SharedPItems;
     SharedCoursesType SharedCourses;
+    CoreCurriculumsType CoreCurriculums;
     hour_t nb_hours_per_week;
     room_id nb_rooms;
+    TimeTableWishesType EstabTimeTableWishes;
 };
 
 

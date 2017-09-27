@@ -6,7 +6,7 @@
 #include "pitem_instance.hpp"
 #include "common/common_types.hpp"
 
-typedef std::map<eqpupils_id , ushort> EqPupilsNbType;
+typedef std::map<eqpupils_id , nbpupils_t> EqPupilsNbType;
 
 class CourseInstance {
 public:
@@ -15,18 +15,20 @@ public:
 
     teacher_id getTeacher() const;
     const EqPupilsNbType& getEqPupilsNb() const;
+    nbpupils_t getNumber() const;
     sharedcourse_id getSharedId() const;
 
     void setTeacher(teacher_id teacher);
-    void setEqPupils(const EqPupilsNbType& eqpupilsnb);
+    void setEqPupilsNb(const EqPupilsNbType& eqpupilsnb);
     void setShared(sharedcourse_id shared);
 
-    void addEqPupils(pupils_id pupils, ushort number);
-    void remEqPupils(pupils_id pupils, ushort number);
+    void addEqPupils(eqpupils_id pupils, ushort number);
+    void remEqPupils(eqpupils_id pupils, ushort number);
 
 private :
     teacher_id teacher;
     EqPupilsNbType eqpupilsnb;
+    uchar number;
     sharedcourse_id shared_id;
 };
 

@@ -5,6 +5,7 @@
 typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned char hour_t;
+typedef unsigned short nbpupils_t;
 
 typedef std::vector<uchar> TimeTableWishesType;
 
@@ -23,6 +24,7 @@ typedef unsigned short sharedpitem_id;
 typedef unsigned short sharedcourse_id;
 typedef unsigned short piteminstance_id;
 typedef unsigned short courseinstance_id;
+typedef unsigned char corecurriculum_id;
 
 
 #endif

@@ -43,7 +43,7 @@ int SharedData::reIndexRooms() {
 
 }
 
-int SharedData::reIndexPupilss() {
+int SharedData::reIndexEqPupilss() {
     std::vector<int> idPupils = buildReIndexVector("SELECT id FROM Teachers ORDER BY id ASC");
 
     std::string updateReq;
@@ -147,16 +147,20 @@ const RoomsType &SharedData::getRooms() const {
     return Rooms;
 }
 
-const PupilssType &SharedData::getPupilss() const {
-    return Pupilss;
-}
-
 const SharedPItemsType &SharedData::getSharedPItems() const {
     return SharedPItems;
 }
 
 const SharedCoursesType &SharedData::getSharedCourses() const {
     return SharedCourses;
+}
+
+const CoreCurriculumsType& SharedData::getCoreCurriculums() const {
+    return CoreCurriculums;
+}
+
+const EqPupilssType &SharedData::getEqPupilss() const {
+    return EqPupilss;
 }
 
 const hour_t SharedData::getNbHoursPerWeek() const {
@@ -167,5 +171,6 @@ const room_id SharedData::getNbRooms() const {
     return nb_rooms;
 }
 
-
-
+const TimeTableWishesType& SharedData::getEstabTimeTableWishes() const{
+    return EstabTimeTableWishes;
+}

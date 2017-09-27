@@ -3,7 +3,7 @@
 #include "basic_instances/course_instance.hpp"
 #include "common/common_types.hpp"
 #include <cmath>
-#define MAX(a, b)=((a)>(b)?(a):(b))
+#define MAX(a, b) ((a)>(b)?(a):(b))
 
 SpecimenAlpha::SpecimenAlpha(const SharedData& _SD) : AbstractSpecimen(_SD)
 {
@@ -28,53 +28,53 @@ void SpecimenAlpha::evaluate()
     std::map<eqpupils_id, ushort> eqpupils_spread;
 
     for (auto const& course : courses){
-        ShareCourseType& sharedscourse = shareddata.getSharedCourses().at(course.getSharedId());
-        m.course_wrong_number += MAX(course.number - sharedcourse.number, 0 ) / sharedcourse.number;
+        const SharedCourse& sharedcourse = shareddata.getSharedCourses().at(course.getSharedId());
+        m.course_wrong_number += MAX(course.getNumber() - sharedcourse.getNumber(), 0 ) / sharedcourse.getNumber();
 
-        for (auto const eqp_it : course.getEqPupils()){
-            auto const& eqp = *eqp_it
-            m.eqpupils_wrong_corecurriculum += shareddata.getEqPupils().at(eqp.first).compareCoreCurriculum(
-                                               shareddata.getCoreCurriculums().at(course.corecurriculum)
+        for (auto eqp_it=course.getEqPupilsNb().cbegin(); eqp_it!=course.getEqPupilsNb().cend(); eqp_it++){
+            auto const& eqp = *eqp_it;
+            m.eqpupils_wrong_corecurriculum += shareddata.getEqPupilss().at(eqp.first).compareCoreCurriculum(
+                                               shareddata.getCoreCurriculums().at(sharedcourse.getCoreCurriculum())
                                                );
-            try { eqpupils_sizes.at(eqp.first)++ }; //repartition of the size of the eq pupils
-            catch ( const std::out_of_range& err ) { eqpupils_sizes[a]=1; }
-            try { eqpupils_spread.at(eqp.first)++ }; //nb of courses in which each eq pupils appears
-            catch ( const std::out_of_range& err ) { eqpupils_spread[a]=1; }
-            for (auto const eqp2_it : course.getEqPupils()){
+            try { eqpupils_sizes.at(eqp.first)++; } //repartition of the size of the eq pupils
+            catch ( const std::out_of_range& err ) { eqpupils_sizes[eqp.first]=1; }
+            try { eqpupils_spread.at(eqp.first)++; } //nb of courses in which each eq pupils appears
+            catch ( const std::out_of_range& err ) { eqpupils_spread[eqp.first]=1; }
+            for (auto eqp2_it=course.getEqPupilsNb().cbegin(); eqp2_it!=course.getEqPupilsNb().cend(); eqp2_it++){
                 if (eqp_it == eqp2_it) continue;
                 auto const& eqp2 = *eqp2_it;
-                m.eqpupils_diff += shareddata.getEqPupils().at(eqp.first).compareEqPupils(
-                                   shareddata.getEqPupils().at(eqp2.first)
+                m.eqpupils_diff += shareddata.getEqPupilss().at(eqp.first).compareEqPupils(
+                                   shareddata.getEqPupilss().at(eqp2.first)
                                    );
             }
         }
     }
 
-    for (auto const p1_it : pitems){
+    for (auto p1_it=pitems.cbegin(); p1_it!=pitems.cend(); p1_it++){
         const PItemInstance& p1 = *p1_it;
-        SharedPItemType& sharedpitem = shareddata.getSharedPItem().at(p1.shared_pitem);
-        CourseInstancesType& course = courses.at(p1.course);
-        ShareCourseType& sharedscourse = shareddata.getSharedCourses().at(course.getSharedId());
-        tid = course.teacher_id;
-        Teacher& teacher = shareddata.getTeachers().at(tid);
-        Room& room = shareddata.getRooms().at(p1.room);
+        const SharedPItem& sharedpitem = shareddata.getSharedPItems().at(p1.shared_pitem);
+        const CourseInstance& course = courses.at(p1.course);
+        const SharedCourse& sharedcourse = shareddata.getSharedCourses().at(course.getSharedId());
+        tid = course.getTeacher();
+        const Teacher& teacher = shareddata.getTeachers().at(tid);
+        const Room& room = shareddata.getRooms().at(p1.room);
 
-        m.room_wrong_number += MAX(course.number - room.number, 0 ) / room.number;
-        m.inappropriate_room += shareddata.getRooms().at(sharedcourse.room_id).compare(room);
+        m.room_wrong_number += MAX(course.getNumber() - room.getNumber(), 0 ) / room.getNumber();
+        m.inappropriate_room += shareddata.getRooms().at(sharedcourse.getRoom()).compare(room);
         m.teachers_hours_violation += teacher.getTimeTableWishes().at(p1.hour);
         m.establishment_hours_violation += shareddata.getEstabTimeTableWishes().at(p1.hour);
         m.room_hours_violation += room.getTimeTableWishes().at(p1.hour);
         m.pitem_hours_violation += sharedpitem.getTimeTableWishes().at(p1.hour);
 
-        for (auto const p2_it : pitems){
+        for (auto p2_it=pitems.cbegin(); p2_it!=pitems.cend(); p2_it++){
             if (p2_it == p1_it) continue;
             const PItemInstance& p2 = *p2_it;
             if (p1.hour != p2.hour) continue;
-            CourseInstancesType& course2 = courses.at(p2.course);
-            m.teacher_overlap += (tid == course2.teacher_id);
+            const CourseInstance& course2 = courses.at(p2.course);
+            m.teacher_overlap += (tid == course2.getTeacher());
             m.room_overlap += (p1.room == p2.room);
-            for (auto const& eqp : course.getEqPupils())
-                for (auto const& eqp2 : course2.getEqPupils())
+            for (auto const& eqp : course.getEqPupilsNb())
+                for (auto const& eqp2 : course2.getEqPupilsNb())
                     m.eqpupils_overlap += (eqp.first == eqp.second);
         }
     }

@@ -21,6 +21,7 @@ const SharedData& AbstractSpecimen::getSharedData() const { return shareddata; }
 const PItemsInstancesType& AbstractSpecimen::getPItems() const { return pitems; }
 const CourseInstancesType& AbstractSpecimen::getCourses() const { return courses; }
 mark_t AbstractSpecimen::getMark() const { return mark; }
+void AbstractSpecimen::setMark(mark_t _mark) { mark = _mark; }
 
 int AbstractSpecimen::uniformDistrib(int min, int max) { 
     return floor( (max-min) * ((float) rand()/RAND_MAX) + min + 0.5); 

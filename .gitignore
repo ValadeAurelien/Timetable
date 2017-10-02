@@ -33,6 +33,7 @@
 
 #temporary files
 *.swp
+\#*\#
 
 #build directory
 build/*
